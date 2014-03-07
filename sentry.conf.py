@@ -26,16 +26,16 @@ SENTRY_KEY = os.environ.get('SENTRY_KEY', base64.urlsafe_b64encode(os.urandom(50
 
 # Set this to false to require authentication
 SENTRY_PUBLIC = False
-SENTRY_ALLOW_REGISTRATION = False
+SENTRY_ALLOW_REGISTRATION = True
 
-SERVER_EMAIL = os.environ.get('SENTRY_EMAIL_FROM', 'root@localhost')
+SERVER_EMAIL = os.environ.get('SENTRY_EMAIL_FROM', 'bugs@fortressitx.com')
 
 # You should configure the absolute URI to Sentry. It will attempt to guess it if you don't
 # but proxies may interfere with this.
 SENTRY_URL_PREFIX = os.environ.get('SENTRY_URL_PREFIX', '')
 
 SENTRY_WEB_HOST = '0.0.0.0'
-SENTRY_WEB_PORT = 9000
+SENTRY_WEB_PORT = 3000
 SENTRY_WEB_OPTIONS = {
     'workers': 3,  # the number of gunicorn workers
     'secure_scheme_headers': {'X-FORWARDED-PROTO': 'https'},  # detect HTTPS mode from X-Forwarded-Proto header
@@ -48,7 +48,7 @@ SENTRY_WEB_OPTIONS = {
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend' if os.environ.get('SENTRY_EMAIL_ENABLED') else 'django.core.mail.backends.console.EmailBackend'
 
-EMAIL_HOST = os.environ.get('SENTRY_EMAIL_HOST', 'localhost')
+EMAIL_HOST = os.environ.get('SENTRY_EMAIL_HOST', 'relay.fortressitx.com')
 EMAIL_HOST_PASSWORD = os.environ.get('SENTRY_EMAIL_PASSWORD', '')
 EMAIL_HOST_USER = os.environ.get('SENTRY_EMAIL_USER','')
 EMAIL_PORT = os.environ.get('SENTRY_EMAIL_PORT', 25)
